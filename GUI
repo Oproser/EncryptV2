@@ -1,0 +1,699 @@
+--[[
+	 __  __              _____   _   _ 
+	|  \/  |     /\     |_   _| | \ | |
+	| \  / |    /  \      | |   |  \| |
+	| |\/| |   / /\ \     | |   | . ` |
+	| |  | |  / ____ \   _| |_  | |\  |
+	|_|  |_| /_/    \_\ |_____| |_| \_|
+--]]
+local Player = game.Players.LocalPlayer
+local Mouse = Player:GetMouse()
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+local CoreGuiService = game:GetService("CoreGui")
+local RunService = game:GetService("RunService")
+local TextService = game:GetService("TextService")
+
+
+local TweenTime = 0.1
+local Level = 1
+
+local GlobalTweenInfo = TweenInfo.new(TweenTime)
+local AlteredTweenInfo = TweenInfo.new(TweenTime, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
+
+local function Tween(GuiObject, Dictionary)
+	local TweenBase = TweenService:Create(GuiObject, GlobalTweenInfo, Dictionary)
+	TweenBase:Play()
+	return TweenBase
+end
+
+local function GetXY(GuiObject)
+	local X, Y = Mouse.X - GuiObject.AbsolutePosition.X, Mouse.Y - GuiObject.AbsolutePosition.Y
+	local MaxX, MaxY = GuiObject.AbsoluteSize.X, GuiObject.AbsoluteSize.Y
+	X, Y = math.clamp(X, 0, MaxX), math.clamp(Y, 0, MaxY)
+	return X, Y, X/MaxX, Y/MaxY
+end
+
+local Setting = {
+	Raindow = false
+}
+
+local rgb = Color3.fromRGB(255, 255, 255)
+
+spawn(
+	function()
+		while true do
+			rgb = Color3.fromHSV(tick() * 24 % 255 / 255, 1, 1)
+			wait()
+		end
+	end
+)
+
+local UILibrary = {}
+
+function UILibrary.Load(GUITitle)
+
+	local Encrypt = Instance.new("ScreenGui")
+	Encrypt.Name = "MainGui"
+	Encrypt.ZIndexBehavior = Enum.ZIndexBehavior.Global
+	Encrypt.ResetOnSpawn = false
+	if game.PlaceId == 8204899140 or game.PlaceId == 8206123457 or RunService:IsStudio() then
+		Encrypt.Parent = game.Players.LocalPlayer.PlayerGui
+	else
+		Encrypt.Parent = game.CoreGui
+	end
+
+	local Draggable = Instance.new("Frame")
+	Draggable.Name = "Draggable"
+	Draggable.Draggable = true
+	Draggable.Selectable = true
+	Draggable.Active = true
+	Draggable.Parent = Encrypt
+	Draggable.BackgroundColor3 = Color3.fromRGB(68, 73, 77)
+	Draggable.BorderSizePixel = 0
+	Draggable.Position = UDim2.new(0.411, 18, 0.358,  -197)
+	Draggable.Size = UDim2.new(0, 114, 0, 22)
+
+	local Overlay = Instance.new("ImageLabel")
+	Overlay.Name = "Overlay"
+	Overlay.Parent = Draggable
+	Overlay.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Overlay.BackgroundTransparency = 1.000
+	Overlay.Position = UDim2.new(-0.01, 0,-0, 0)
+	Overlay.Size = UDim2.new(0, 555,0, 387)
+	Overlay.ZIndex = 3
+	Overlay.Image = "rbxassetid://4280422108"
+	Overlay.ImageColor3 = Color3.fromRGB(183, 197, 211)
+	Overlay.ScaleType = Enum.ScaleType.Slice
+	Overlay.SliceCenter = Rect.new(14, 14, 18, 18)
+	
+
+	local Line = Instance.new("ImageLabel")
+	Line.Name = "Line"
+	Line.Parent = Draggable
+	Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Line.BackgroundTransparency = 1
+	Line.Position = UDim2.new(0.99, 0,0, 0)
+	Line.Size = UDim2.new(0, 5,17.5, 0)
+	Line.ZIndex = 2
+	Line.Image = "rbxassetid://5031802572"
+	Line.ImageColor3 = Color3.fromRGB(183, 197, 211)
+	Line.ScaleType = Enum.ScaleType.Tile
+	
+
+
+	local Background = Instance.new("Frame")
+	Background.Name = "Background"
+	Background.Parent = Draggable
+	Background.BackgroundColor3 = Color3.fromRGB(229, 224, 202)
+	Background.BorderSizePixel = 0
+	Background.Position = UDim2.new(1, 0, 0.15, 0)
+	Background.Size = UDim2.new(0, 439,0, 382)
+	Background.ZIndex = 0
+
+	local Pages = Instance.new("Frame")
+	Pages.Name = "Pages"
+	Pages.Parent = Draggable
+	Pages.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Pages.BackgroundTransparency = 1
+	Pages.Position = UDim2.new(1, 0, 0.5, 0)
+	Pages.Size = UDim2.new(0, 440,0, 386)
+
+	--Title
+
+	local Title = Instance.new("Frame")
+	Title.Name = "Title"
+	Title.Parent = Draggable
+	Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Title.BackgroundTransparency = 1.000
+	Title.BorderSizePixel = 0
+	Title.Size = UDim2.new(0, 114, 0, 22)
+
+	local Line2 = Instance.new("ImageLabel")
+	Line2.Name = "Line"
+	Line2.Parent = Title
+	Line2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Line2.BackgroundTransparency = 1.000
+	Line2.Position = UDim2.new(0, 0, 0.778, 0)
+	Line2.Size = UDim2.new(1, 0, 0, 5)
+	Line2.Image = "rbxassetid://5035647017"
+	Line2.ImageColor3 = Color3.fromRGB(183, 197, 211)
+	Line2.ScaleType = Enum.ScaleType.Tile
+	
+	RunService.Stepped:Connect(function()
+		pcall(
+			function()
+				if Setting.Raindow == true then
+					Overlay.ImageColor3 = rgb
+					Line.ImageColor3 = rgb
+					Line2.ImageColor3 = rgb
+				end
+			end
+		)
+	end)
+
+	local TextLabel = Instance.new("TextLabel")
+	TextLabel.Parent = Title
+	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel.BackgroundTransparency = 1.000
+	TextLabel.BorderSizePixel = 0
+	TextLabel.Position = UDim2.new(0.088, 0, 0, 0)
+	TextLabel.Size = UDim2.new(1, -60, 1, 0)
+	TextLabel.Font = Enum.Font.SourceSansSemibold
+	TextLabel.Text = GUITitle
+	TextLabel.TextColor3 = Color3.fromRGB(247, 254, 255)
+	TextLabel.TextSize = 14.000
+	TextLabel.TextStrokeColor3 = Color3.fromRGB(41, 50, 53)
+	TextLabel.TextStrokeTransparency = 0.1
+	TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+	--Tabs
+
+	local Tabs = Instance.new("Frame")
+	Tabs.Name = "Tabs"
+	Tabs.Parent = Draggable
+	Tabs.BackgroundColor3 = Color3.fromRGB(59, 62, 67)
+	Tabs.BorderSizePixel = 0
+	Tabs.Position = UDim2.new(0, 0, 1, 0)
+	Tabs.Size = UDim2.new(0, 114, 0, 365)
+
+	local Background = Instance.new("ImageLabel")
+	Background.Name = "Background"
+	Background.Parent = Tabs
+	Background.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Background.BackgroundTransparency = 1.000
+	Background.Size = UDim2.new(0, 114, 0, 365)
+	Background.Image = "rbxassetid://4280494932"
+	Background.ImageColor3 = Color3.fromRGB(4, 5, 6)
+	Background.ImageTransparency = 0.9
+	Background.ScaleType = Enum.ScaleType.Tile
+	Background.TileSize = UDim2.new(0, 32, 0, 32)
+
+	local List = Instance.new("Frame")
+	List.Parent = Tabs
+	List.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	List.BackgroundTransparency = 1.000
+	List.Size = UDim2.new(0, 114, 0, 364)
+
+	local UIListLayout = Instance.new("UIListLayout")
+	UIListLayout.Parent = List
+	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	UIListLayout.HorizontalAlignment = "Left"
+	
+	local UIPadding = Instance.new("UIPadding")
+	UIPadding.Parent = List
+	UIPadding.PaddingLeft = UDim.new(0.02, 0)
+	UIPadding.PaddingTop = UDim.new(0.002, 0)
+
+	local GroupLibrary = {}
+
+	function GroupLibrary.AddGroup(GroupTitle)
+
+		local Group = Instance.new("Frame")
+		Group.Name = "Group"
+		Group.Parent = List
+		Group.Size = UDim2.new(0, 117,0, 17)
+		Group.BackgroundTransparency = 1
+		Group.ZIndex = 1
+
+		local GroupName = Instance.new("TextLabel")
+		GroupName.Name = "GroupName"
+		GroupName.Parent = Group
+		GroupName.Position = UDim2.new(0.085, 0,0, 0)
+		GroupName.Size = UDim2.new(0.701, 0,1, 0)
+		GroupName.BackgroundTransparency = 1
+		GroupName.TextColor3 = Color3.fromRGB(247, 254, 255)
+		GroupName.TextStrokeColor3 = Color3.fromRGB(41, 50, 53)
+		GroupName.TextStrokeTransparency = 0.1
+		GroupName.TextSize = 14
+		GroupName.TextXAlignment = "Left"
+		GroupName.Font = "SourceSansSemibold"
+		GroupName.Text = GroupTitle
+		GroupName.ZIndex = 2
+	end
+
+	function GroupLibrary.AddTab(TabTitle)
+
+
+		local Page = Instance.new("ScrollingFrame")
+		Page.Name = TabTitle
+		Page.Parent = Pages
+		Page.Active = true
+		Page.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Page.BackgroundTransparency = 1
+		Page.BorderSizePixel = 0
+		Page.Position = UDim2.new(-0.003, 0,0, 0)
+		Page.Size = UDim2.new(0, 440,0, 374)
+		Page.ZIndex = 1
+		Page.BottomImage = ""
+		Page.CanvasSize = UDim2.new(0, 0, 0, 0)
+		Page.AutomaticCanvasSize = "Y"
+		Page.MidImage = ""
+		Page.ScrollBarThickness = 0
+		Page.TopImage = ""
+		Page.Visible = false
+		
+		local Left = Instance.new("Frame")
+		Left.Name = "Left"
+		Left.Parent = Page
+		Left.BackgroundTransparency = 1
+		Left.Position = UDim2.new(0.02, 0, 0, 0)
+		Left.Size = UDim2.new(0, 204,0, 374)
+		
+		local UIPadding = Instance.new("UIPadding")
+		UIPadding.Parent = Left
+		UIPadding.PaddingLeft = UDim.new(0.02, 0)
+		UIPadding.PaddingTop = UDim.new(0.002, 0)
+		
+		local Right = Instance.new("Frame")
+		Right.Name = "Right"
+		Right.Parent = Page
+		Right.BackgroundTransparency = 1
+		Right.Position = UDim2.new(0.507, 0, 0, 0)
+		Right.Size = UDim2.new(0, 204,0, 374)
+		
+
+		local UIPadding = Instance.new("UIPadding")
+		UIPadding.Parent = Right
+		UIPadding.PaddingLeft = UDim.new(0.02, 0)
+		UIPadding.PaddingTop = UDim.new(0.002, 0)
+		
+		local UIListLayout = Instance.new("UIListLayout")
+		UIListLayout.Parent = Left
+		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		UIListLayout.Padding = UDim.new(0.02, 0)
+		UIListLayout.HorizontalAlignment = "Left"
+		
+
+		
+		local UIListLayout = Instance.new("UIListLayout")
+		UIListLayout.Parent = Right
+		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		UIListLayout.Padding = UDim.new(0.02, 0)
+		UIListLayout.HorizontalAlignment = "Left"
+
+
+		local Tab = Instance.new("ImageButton")
+		Tab.Name = "Group"
+		Tab.Parent = List
+		Tab.Size = UDim2.new(0, 117,0, 17)
+		Tab.BorderColor3 = Color3.fromRGB(17, 255, 0)
+		Tab.BorderSizePixel = 0
+		Tab.BackgroundTransparency = 1
+		Tab.ZIndex = 1
+
+		local TabName = Instance.new("TextLabel")
+		TabName.Name = "TabName"
+		TabName.Parent = Tab
+		TabName.Position = UDim2.new(0.145, 0,0, 0)
+		TabName.Size = UDim2.new(0.855, 0,1, 0)
+		TabName.BackgroundTransparency = 1
+		TabName.TextTransparency = 0.3
+		TabName.TextColor3 = Color3.fromRGB(247, 254, 255)
+		TabName.TextStrokeColor3 = Color3.fromRGB(41, 50, 53)
+		TabName.TextStrokeTransparency = 0.1
+		TabName.TextSize = 14
+		TabName.TextXAlignment = "Left"
+		TabName.Font = "SourceSansSemibold"
+		TabName.Text = TabTitle
+		TabName.ZIndex = 2
+
+		Tab.AutoButtonColor = false
+		Tab.MouseEnter:Connect(function(x, y)
+			if Tab.BorderColor3 == Color3.fromRGB(17, 255, 0) then
+				local tween = TweenService:Create(TabName,TweenInfo.new(0.4,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),{
+					TextTransparency = 0.2
+				})
+				tween:Play()
+			end
+		end)
+		Tab.MouseLeave:Connect(function(x, y)
+			if Tab.BorderColor3 == Color3.fromRGB(17, 255, 0) then
+				local tween = TweenService:Create(TabName,TweenInfo.new(0.4,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),{
+					TextTransparency = 0.3
+				})
+				tween:Play()
+			end
+		end)
+
+
+		Tab.MouseButton1Down:Connect(function(x,y)
+			if Tab.BorderColor3 == Color3.fromRGB(17, 255, 0) then
+				Tab.BorderColor3 = Color3.fromRGB(255, 0, 4)
+				Page.Visible = true
+				for _,Class in pairs(List:GetChildren()) do
+					if Class.ClassName == "ImageButton" and Class.BorderColor3 == Color3.fromRGB(255, 0, 4) and Class ~= Tab then
+						Class.BorderColor3 = Color3.fromRGB(17, 255, 0)
+
+						print("yes")
+						local tween = TweenService:Create(Class.TabName,TweenInfo.new(0.4,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),{
+							Position = UDim2.new(0.145, 0,0, 0)
+						})
+						tween:Play()
+					end
+				end
+
+				for _,Class in pairs(Pages:GetChildren()) do
+					if Class.ClassName == "ScrollingFrame" and Class.Visible == true and Class ~= Page then
+						Class.Visible = false
+					end
+				end
+
+				local tween = TweenService:Create(TabName,TweenInfo.new(0.4,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),{
+					Position = UDim2.new(0.18, 0,0, 0)
+				})
+				tween:Play()
+
+			else
+				Tab.BorderColor3 = Color3.fromRGB(17, 255, 0)
+				Page.Visible = false
+				local tween = TweenService:Create(TabName,TweenInfo.new(0.4,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),{
+					Position = UDim2.new(0.145, 0,0, 0)
+				})
+				tween:Play()
+
+
+			end
+
+		end)
+		local ActionLibrary = {}
+
+		function ActionLibrary.AddAction(TabTitle, Side)
+			
+			local Tab = Instance.new("Frame")
+			Tab.Name = TabTitle
+			
+			if Side == "Left" then
+				Tab.Parent = Left
+			elseif Side == "Right" then
+				Tab.Parent = Right
+			end
+			
+			Tab.BackgroundColor3 = Color3.fromRGB(59, 62, 67)
+			Tab.BorderSizePixel = 0
+			Tab.Size = UDim2.new(0, 202,0, 38)
+			Tab.AnchorPoint = Vector2.new(0.5,0.5)
+			Tab.ZIndex = 1
+			
+			local Background = Instance.new("ImageLabel")
+			Background.Name = "Background"
+			Background.Parent = Tab
+			Background.BackgroundColor3 = Color3.fromRGB(59, 62, 67)
+			Background.BackgroundTransparency = 0
+			Background.BorderSizePixel = 0
+			Background.Size = UDim2.new(0, 203,0, 32)
+			Background.Image = "rbxassetid://9685176538"
+			Background.ImageColor3 = Color3.fromRGB(4, 5, 6)
+			Background.ImageTransparency = 0.89
+			Background.ScaleType = Enum.ScaleType.Tile
+			Background.TileSize = UDim2.new(0, 32, 0, 32)
+			Background.ZIndex = 3
+			
+			local BackgroundMain = Instance.new("ImageLabel")
+			BackgroundMain.Name = "BackgroundMain"
+			BackgroundMain.Parent = Tab
+			BackgroundMain.BackgroundColor3 = Color3.fromRGB(68, 73, 77)
+			BackgroundMain.BackgroundTransparency = 0
+			BackgroundMain.BorderSizePixel = 0
+			BackgroundMain.Size = UDim2.new(1, 0,1, 0)
+			BackgroundMain.Image = "rbxassetid://9685176538"
+			BackgroundMain.ImageColor3 = Color3.fromRGB(4, 5, 6)
+			BackgroundMain.ImageTransparency = 0.89
+			BackgroundMain.ScaleType = Enum.ScaleType.Tile
+			BackgroundMain.TileSize = UDim2.new(0, 32, 0, 32)
+			BackgroundMain.ZIndex = 2
+			
+			local Features = Instance.new("ImageLabel")
+			Features.Name = "Features"
+			Features.Parent = Tab
+			Features.BackgroundTransparency = 1
+			Features.Position = UDim2.new(0.006, 0,0, 0)
+			Features.Size = UDim2.new(0, 201,0, 76)
+			Features.Image = ""
+			Features.ZIndex = 2
+			
+			local List = Instance.new("Frame")
+			List.Name = "Features"
+			List.Parent = Features
+			List.BackgroundTransparency = 1
+			List.Position = UDim2.new(0, 0,0.491, 0)
+			List.Size = UDim2.new(0, 201,0, 27)
+			List.ZIndex = 1
+			
+			local UIListLayout = Instance.new("UIListLayout")
+			UIListLayout.Parent = List
+			UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+			UIListLayout.Padding = UDim.new(0, 4)
+			UIListLayout.HorizontalAlignment = "Left"
+		
+			
+			
+			local Overlay = Instance.new("ImageLabel")
+			Overlay.Name = "Overlay"
+			Overlay.Parent = Tab
+			Overlay.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			Overlay.BackgroundTransparency = 1
+			Overlay.Position = UDim2.new(0, 0,0, 0)
+			Overlay.Size = UDim2.new(1, 0,1, 0)
+			Overlay.ZIndex = 3
+			Overlay.Image = "rbxassetid://4280422108"
+			Overlay.ImageColor3 = Color3.fromRGB(183, 197, 211)
+			Overlay.ScaleType = Enum.ScaleType.Slice
+			Overlay.SliceCenter = Rect.new(14, 14, 18, 18)
+			
+			local Title = Instance.new("ImageLabel")
+			Title.Name = "Title"
+			Title.Parent = Tab
+			Title.BackgroundTransparency = 1
+			Title.Position = UDim2.new(0, 0,0, 0)
+			Title.Size = UDim2.new(0, 364,0, 79)
+			Title.Image = ""
+			Title.ZIndex = 2
+			
+			local TextLabel = Instance.new("TextLabel")
+			TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.Parent = Title
+			TextLabel.BackgroundTransparency = 1.000
+		 	TextLabel.BorderSizePixel = 0
+			TextLabel.Position = UDim2.new(0.199, 0,0.135, 0)
+			TextLabel.Size = UDim2.new(0.147, 0,0.16, 0)
+			TextLabel.Font = Enum.Font.SourceSansSemibold
+			TextLabel.Text = TabTitle
+			TextLabel.TextColor3 = Color3.fromRGB(250, 255, 222)
+			TextLabel.TextSize = 14
+			TextLabel.TextStrokeColor3 = Color3.fromRGB(41, 50, 53)
+			TextLabel.TextStrokeTransparency = 0.1
+			TextLabel.ZIndex = 3
+			
+		
+			local Line = Instance.new("ImageLabel")
+			Line.Name = "Line"
+			Line.Parent = TextLabel
+			Line.BackgroundTransparency = 1
+			Line.Position = UDim2.new(0.559, 0,1.5, 0)
+			Line.Size = UDim2.new(3.779, 0,0, 5)
+			Line.ZIndex = 4
+			Line.Image = "rbxassetid://5035647017"
+			Line.ImageColor3 = Color3.fromRGB(183, 197, 211)
+			Line.ScaleType = Enum.ScaleType.Tile
+			Line.AnchorPoint = Vector2.new(0.5,0.5)
+			
+			local Value = 0
+			
+			local ButtonLibrary = {}
+			
+			function ButtonLibrary.AddEnable(Name, Callback)
+				
+				local Color = false
+				
+				local Button = Instance.new("ImageButton")
+				Button.Name = "Button"
+				Button.Parent = List
+				Button.BackgroundTransparency = 1
+				Button.Size = UDim2.new(0, 201,0, 17)
+				Button.ZIndex = 2
+			
+
+
+				Value = Tab.Size.Y.Offset + Button.Size.Y.Offset + 4
+				
+				
+				Tab.Size = UDim2.new(0, 202,0,Value)
+				
+				print(Value)
+				
+				local Enable = Instance.new("ImageLabel")
+				Enable.Name = "Enable"
+				Enable.Parent = Button
+				Enable.BackgroundTransparency = 1
+				Enable.Position = UDim2.new(0.856, 0,-0.043, 0)
+				Enable.Size = UDim2.new(0, 16,0, 16)
+				Enable.ZIndex = 4
+				Enable.Image = "rbxassetid://4527910090"
+				Enable.ImageColor3 = Color3.fromRGB(255, 255, 255)
+				Enable.ScaleType = Enum.ScaleType.Stretch
+				Enable.AnchorPoint = Vector2.new(0, 0)
+				
+				local Back = Instance.new("Frame")
+				Back.Name = "Back"
+				Back.Parent = Enable
+				Back.AnchorPoint = Vector2.new(0.5,0.5)
+				Back.BackgroundColor3 = Color3.fromRGB(255, 115, 102)
+				Back.Position = UDim2.new(0.5, 0,0.5, 0)
+				Back.Size = UDim2.new(0, 14,0, 14)
+				Back.ZIndex = 3
+				
+				local Corner = Instance.new("UICorner")
+				Corner.Name = "UICorner"
+				Corner.Parent = Back
+				Corner.CornerRadius = UDim.new(0,8)
+				
+				local TextLabel = Instance.new("TextLabel")
+				TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				TextLabel.Parent = Button
+				TextLabel.BackgroundTransparency = 1
+				TextLabel.BorderSizePixel = 0
+				TextLabel.Position = UDim2.new(0.067, 0,-0.043, 0)
+				TextLabel.Size = UDim2.new(0.153, 0,0.739, 0)
+				TextLabel.Font = Enum.Font.SourceSansSemibold
+				TextLabel.Text = Name
+				TextLabel.TextColor3 = Color3.fromRGB(247, 254, 255)
+				TextLabel.TextSize = 14
+				TextLabel.TextStrokeColor3 = Color3.fromRGB(41, 50, 53)
+				TextLabel.TextStrokeTransparency = 0.1
+				TextLabel.TextXAlignment = "Left"
+				TextLabel.ZIndex = 4
+				
+				Button.MouseButton1Down:Connect(function(i)
+					if Color == true then
+						Color = not Color
+						Callback(false)
+						local tween = TweenService:Create(Back,TweenInfo.new(0.4,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),{
+							BackgroundColor3 = Color3.fromRGB(255, 115, 102)
+						})
+						tween:Play()
+					else
+						Color = not Color
+						Callback(true)
+						local tween = TweenService:Create(Back,TweenInfo.new(0.4,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),{
+							BackgroundColor3 = Color3.fromRGB(181, 255, 120)
+						})
+						tween:Play()
+					end
+
+				end)
+
+				local KeybindLibrary = {}
+
+				function KeybindLibrary.AddKeybind()
+
+
+					local selecting = false
+					local keyn
+
+
+					local Button = Instance.new("ImageButton")
+					Button.Name = "Button"
+					Button.Parent = List
+					Button.BackgroundTransparency = 1
+					Button.Size = UDim2.new(0, 201,0, 17)
+					Button.ZIndex = 2
+
+
+
+					Value = Tab.Size.Y.Offset + Button.Size.Y.Offset + 4
+
+
+					Tab.Size = UDim2.new(0, 202,0,Value)
+
+					print(Value)
+
+					
+					local TextLabel = Instance.new("TextLabel")
+					TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+					TextLabel.Parent = Button
+					TextLabel.BackgroundTransparency = 1
+					TextLabel.BorderSizePixel = 0
+					TextLabel.Position = UDim2.new(0.067, 0,-0.043, 0)
+					TextLabel.Size = UDim2.new(0.153, 0,0.739, 0)
+					TextLabel.Font = Enum.Font.SourceSansSemibold
+					TextLabel.Text = "Keybind"
+					TextLabel.TextColor3 = Color3.fromRGB(247, 254, 255)
+					TextLabel.TextSize = 14
+					TextLabel.TextStrokeColor3 = Color3.fromRGB(41, 50, 53)
+					TextLabel.TextStrokeTransparency = 0.1
+					TextLabel.TextXAlignment = "Left"
+					TextLabel.ZIndex = 4
+					
+					local InputButName = Instance.new("TextLabel")
+					InputButName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+					InputButName.Parent = Button
+					InputButName.BackgroundTransparency = 1
+					InputButName.BorderSizePixel = 0
+					InputButName.Position = UDim2.new(0.82, 0,-0.043, 0)
+					InputButName.Size = UDim2.new(0.153, 0,0.739, 0)
+					InputButName.Font = Enum.Font.SourceSansSemibold
+					InputButName.Text = ". . ."
+					InputButName.TextColor3 = Color3.fromRGB(250, 255, 222)
+					InputButName.TextSize = 14
+					InputButName.TextStrokeColor3 = Color3.fromRGB(41, 50, 53)
+					InputButName.TextStrokeTransparency = 0.1
+					InputButName.TextXAlignment = "Center"
+					InputButName.ZIndex = 4
+
+					Button.MouseButton1Click:Connect(function(input, gameProcessed)
+						if gameProcessed then return end
+						selecting = false
+						if selecting == false then
+							InputButName.Text = ". . ."
+							InputButName.TextColor3 = Back.BackgroundColor3
+							
+							UserInputService.InputBegan:Connect(function(input, gameProcessed)
+								if selecting == false then
+									local key = string.split(tostring(input.KeyCode), ".")
+									InputButName.Text = key[3]
+									InputButName.TextColor3 = Color3.fromRGB(250, 255, 222)
+									keyn = input.KeyCode
+									wait(0.1)
+									selecting = true
+								end
+							end)
+						end
+					end)
+					UserInputService.InputBegan:Connect(function(input, gameProcessed)
+						if gameProcessed then return end
+						if selecting == true then
+							if input.KeyCode == keyn then
+								if Color == true then
+									Color = not Color
+									Callback(false)
+									local tween = TweenService:Create(Back,TweenInfo.new(0.4,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),{
+										BackgroundColor3 = Color3.fromRGB(255, 115, 102)
+									})
+									tween:Play()
+								else
+									Color = not Color
+									Callback(true)
+									local tween = TweenService:Create(Back,TweenInfo.new(0.4,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),{
+										BackgroundColor3 = Color3.fromRGB(181, 255, 120)
+									})
+									tween:Play()
+								end
+
+							end
+						end
+					end)
+
+
+				end
+				return KeybindLibrary
+			
+			end
+			return ButtonLibrary
+			
+		end
+		return ActionLibrary
+	end
+	return GroupLibrary
+end
+return UILibrary
