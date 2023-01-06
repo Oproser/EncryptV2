@@ -57,7 +57,7 @@ function UILibrary.Load(GUITitle)
 	Encrypt.Name = "MainGui"
 	Encrypt.ZIndexBehavior = Enum.ZIndexBehavior.Global
 	Encrypt.ResetOnSpawn = false
-	if game.PlaceId == 8204899140 or game.PlaceId == 8206123457 or game.PlaceId == 8206126987 or RunService:IsStudio() then
+	if game.PlaceId == 8204899140 or game.PlaceId == 8206123457 or RunService:IsStudio() then
 		Encrypt.Parent = game.Players.LocalPlayer.PlayerGui
 	else
 		Encrypt.Parent = game.CoreGui
