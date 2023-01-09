@@ -86,7 +86,7 @@ function UILibrary.Load(GUITitle)
 	Overlay.ImageColor3 = Color3.fromRGB(183, 197, 211)
 	Overlay.ScaleType = Enum.ScaleType.Slice
 	Overlay.SliceCenter = Rect.new(14, 14, 18, 18)
-	
+
 
 	local Line = Instance.new("ImageLabel")
 	Line.Name = "Line"
@@ -99,7 +99,7 @@ function UILibrary.Load(GUITitle)
 	Line.Image = "rbxassetid://5031802572"
 	Line.ImageColor3 = Color3.fromRGB(183, 197, 211)
 	Line.ScaleType = Enum.ScaleType.Tile
-	
+
 
 
 	local Background = Instance.new("Frame")
@@ -139,7 +139,7 @@ function UILibrary.Load(GUITitle)
 	Line2.Image = "rbxassetid://5035647017"
 	Line2.ImageColor3 = Color3.fromRGB(183, 197, 211)
 	Line2.ScaleType = Enum.ScaleType.Tile
-	
+
 	RunService.Stepped:Connect(function()
 		pcall(
 			function()
@@ -199,11 +199,124 @@ function UILibrary.Load(GUITitle)
 	UIListLayout.Parent = List
 	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	UIListLayout.HorizontalAlignment = "Left"
-	
+
 	local UIPadding = Instance.new("UIPadding")
 	UIPadding.Parent = List
 	UIPadding.PaddingLeft = UDim.new(0.02, 0)
 	UIPadding.PaddingTop = UDim.new(0.002, 0)
+	
+	
+	
+	
+	--//////// Console Logger ///////////////
+	
+	
+	
+	UILibrary.ConsoleDrag = Instance.new("Frame")
+	
+	UILibrary.ConsoleDrag.Visible = false
+	UILibrary.ConsoleDrag.Name = "ConsoleDrag"
+	UILibrary.ConsoleDrag.Parent = Encrypt
+	UILibrary.ConsoleDrag.Active = true
+	UILibrary.ConsoleDrag.ConsoleDragleDrag.BackgroundColor3 = Color3.fromRGB(68, 73, 77)
+	UILibrary.ConsoleDrag.BorderSizePixel = 0
+	UILibrary.ConsoleDrag.Draggable = true
+	UILibrary.ConsoleDrag.Position = UDim2.new(-3.66452861, 170, -7.41472769, 162)
+	UILibrary.ConsoleDrag.Selectable = true
+	UILibrary.ConsoleDrag.Size = UDim2.new(0, 241, 0, 22)
+
+	local Overlay = Instance.new("ImageLabel")
+	Overlay.Name = "Overlay"
+	Overlay.Parent = UILibrary.ConsoleDrag
+	Overlay.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Overlay.BackgroundTransparency = 1.000
+	Overlay.Position = UDim2.new(-0.0100001423, 0, 0, 0)
+	Overlay.Size = UDim2.new(0, 243, 0, 184)
+	Overlay.ZIndex = 5
+	Overlay.Image = "rbxassetid://4280422108"
+	Overlay.ImageColor3 = Color3.fromRGB(183, 197, 211)
+	Overlay.ScaleType = Enum.ScaleType.Slice
+	Overlay.SliceCenter = Rect.new(14, 14, 18, 18)
+
+	local Background = Instance.new("Frame")
+	Background.Name = "Background"
+	Background.Parent = UILibrary.ConsoleDrag
+	Background.BackgroundColor3 = Color3.fromRGB(229, 224, 202)
+	Background.BorderSizePixel = 0
+	Background.Position = UDim2.new(0, 0, 1.01871002, 0)
+	Background.Size = UDim2.new(0, 240, 0, 161)
+	Background.ZIndex = 0
+
+	local Line = Instance.new("ImageLabel")
+	Line.Name = "Line"
+	Line.Parent = UILibrary.ConsoleDrag
+	Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Line.BackgroundTransparency = 1.000
+	Line.Position = UDim2.new(0, 0, 0.899999976, 0)
+	Line.Size = UDim2.new(1, 0, 0, 5)
+	Line.ZIndex = 4
+	Line.Image = "rbxassetid://5035647017"
+	Line.ImageColor3 = Color3.fromRGB(183, 197, 211)
+	Line.ScaleType = Enum.ScaleType.Tile
+
+	local TextLabel = Instance.new("TextLabel")
+	TextLabel.Parent = UILibrary.ConsoleDrag
+	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel.BackgroundTransparency = 1.000
+	TextLabel.BorderSizePixel = 0
+	TextLabel.Position = UDim2.new(0.0299999993, 0, 0, 0)
+	TextLabel.Size = UDim2.new(1, -60, 1, 0)
+	TextLabel.Font = Enum.Font.SourceSansSemibold
+	TextLabel.Text = "Console Logger"
+	TextLabel.TextColor3 = Color3.fromRGB(247, 254, 255)
+	TextLabel.TextSize = 14.000
+	TextLabel.TextStrokeColor3 = Color3.fromRGB(41, 50, 53)
+	TextLabel.TextStrokeTransparency = 0.100
+	TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+	local ScrollingFrame = Instance.new("ScrollingFrame")
+	ScrollingFrame.Parent = UILibrary.ConsoleDrag
+	ScrollingFrame.Active = true
+	ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ScrollingFrame.BackgroundTransparency = 1.000
+	ScrollingFrame.Position = UDim2.new(0, 0, 1.02434742, 0)
+	ScrollingFrame.Size = UDim2.new(0, 240, 0, 160)
+	ScrollingFrame.ScrollBarThickness = 5
+
+	local UIListLayout = Instance.new("UIListLayout")
+	UIListLayout.Parent = ScrollingFrame
+	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+	local UIPadding = Instance.new("UIPadding")
+	UIPadding.Parent = ScrollingFrame
+	UIPadding.PaddingLeft = UDim.new(0.0299999993, 0)
+	UIPadding.PaddingTop = UDim.new(0.0299999993, 0)
+
+	local TextBox = Instance.new("TextBox")
+	TextBox.Parent = ScrollingFrame
+	TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextBox.BackgroundTransparency = 1.000
+	TextBox.Position = UDim2.new(0, 0, 0.174999997, 0)
+	TextBox.Selectable = false
+	TextBox.Size = UDim2.new(0, 226, 0, 16)
+	TextBox.ClearTextOnFocus = false
+	TextBox.Font = Enum.Font.SourceSansBold
+	TextBox.Text = "Error Code 664: Undefined varible on page 198"
+	TextBox.TextColor3 = Color3.fromRGB(247, 254, 255)
+	TextBox.TextSize = 14.000
+	TextBox.TextStrokeTransparency = 0.250
+	TextBox.TextWrapped = true
+	TextBox.TextXAlignment = Enum.TextXAlignment.Left
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	local GroupLibrary = {}
 
@@ -252,40 +365,40 @@ function UILibrary.Load(GUITitle)
 		Page.ScrollBarThickness = 0
 		Page.TopImage = ""
 		Page.Visible = false
-		
+
 		local Left = Instance.new("Frame")
 		Left.Name = "Left"
 		Left.Parent = Page
 		Left.BackgroundTransparency = 1
 		Left.Position = UDim2.new(0.02, 0, 0, 0)
 		Left.Size = UDim2.new(0, 204,0, 374)
-		
+
 		local UIPadding = Instance.new("UIPadding")
 		UIPadding.Parent = Left
 		UIPadding.PaddingLeft = UDim.new(0.02, 0)
 		UIPadding.PaddingTop = UDim.new(0.002, 0)
-		
+
 		local Right = Instance.new("Frame")
 		Right.Name = "Right"
 		Right.Parent = Page
 		Right.BackgroundTransparency = 1
 		Right.Position = UDim2.new(0.507, 0, 0, 0)
 		Right.Size = UDim2.new(0, 204,0, 374)
-		
+
 
 		local UIPadding = Instance.new("UIPadding")
 		UIPadding.Parent = Right
 		UIPadding.PaddingLeft = UDim.new(0.02, 0)
 		UIPadding.PaddingTop = UDim.new(0.002, 0)
-		
+
 		local UIListLayout = Instance.new("UIListLayout")
 		UIListLayout.Parent = Left
 		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 		UIListLayout.Padding = UDim.new(0.02, 0)
 		UIListLayout.HorizontalAlignment = "Left"
-		
 
-		
+
+
 		local UIListLayout = Instance.new("UIListLayout")
 		UIListLayout.Parent = Right
 		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
@@ -379,22 +492,22 @@ function UILibrary.Load(GUITitle)
 		local ActionLibrary = {}
 
 		function ActionLibrary.AddAction(TabTitle, Side)
-			
+
 			local Tab = Instance.new("Frame")
 			Tab.Name = TabTitle
-			
+
 			if Side == "Left" then
 				Tab.Parent = Left
 			elseif Side == "Right" then
 				Tab.Parent = Right
 			end
-			
+
 			Tab.BackgroundColor3 = Color3.fromRGB(59, 62, 67)
 			Tab.BorderSizePixel = 0
 			Tab.Size = UDim2.new(0, 202,0, 38)
 			Tab.AnchorPoint = Vector2.new(0.5,0.5)
 			Tab.ZIndex = 1
-			
+
 			local Background = Instance.new("ImageLabel")
 			Background.Name = "Background"
 			Background.Parent = Tab
@@ -408,7 +521,7 @@ function UILibrary.Load(GUITitle)
 			Background.ScaleType = Enum.ScaleType.Tile
 			Background.TileSize = UDim2.new(0, 32, 0, 32)
 			Background.ZIndex = 3
-			
+
 			local BackgroundMain = Instance.new("ImageLabel")
 			BackgroundMain.Name = "BackgroundMain"
 			BackgroundMain.Parent = Tab
@@ -422,7 +535,7 @@ function UILibrary.Load(GUITitle)
 			BackgroundMain.ScaleType = Enum.ScaleType.Tile
 			BackgroundMain.TileSize = UDim2.new(0, 32, 0, 32)
 			BackgroundMain.ZIndex = 2
-			
+
 			local Features = Instance.new("ImageLabel")
 			Features.Name = "Features"
 			Features.Parent = Tab
@@ -431,7 +544,7 @@ function UILibrary.Load(GUITitle)
 			Features.Size = UDim2.new(0, 201,0, 76)
 			Features.Image = ""
 			Features.ZIndex = 2
-			
+
 			local List = Instance.new("Frame")
 			List.Name = "Features"
 			List.Parent = Features
@@ -439,15 +552,15 @@ function UILibrary.Load(GUITitle)
 			List.Position = UDim2.new(0, 0,0.491, 0)
 			List.Size = UDim2.new(0, 201,0, 27)
 			List.ZIndex = 1
-			
+
 			local UIListLayout = Instance.new("UIListLayout")
 			UIListLayout.Parent = List
 			UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 			UIListLayout.Padding = UDim.new(0, 4)
 			UIListLayout.HorizontalAlignment = "Left"
-		
-			
-			
+
+
+
 			local Overlay = Instance.new("ImageLabel")
 			Overlay.Name = "Overlay"
 			Overlay.Parent = Tab
@@ -460,7 +573,7 @@ function UILibrary.Load(GUITitle)
 			Overlay.ImageColor3 = Color3.fromRGB(183, 197, 211)
 			Overlay.ScaleType = Enum.ScaleType.Slice
 			Overlay.SliceCenter = Rect.new(14, 14, 18, 18)
-			
+
 			local Title = Instance.new("ImageLabel")
 			Title.Name = "Title"
 			Title.Parent = Tab
@@ -469,12 +582,12 @@ function UILibrary.Load(GUITitle)
 			Title.Size = UDim2.new(0, 364,0, 79)
 			Title.Image = ""
 			Title.ZIndex = 2
-			
+
 			local TextLabel = Instance.new("TextLabel")
 			TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			TextLabel.Parent = Title
 			TextLabel.BackgroundTransparency = 1.000
-		 	TextLabel.BorderSizePixel = 0
+			TextLabel.BorderSizePixel = 0
 			TextLabel.Position = UDim2.new(0.199, 0,0.135, 0)
 			TextLabel.Size = UDim2.new(0.147, 0,0.16, 0)
 			TextLabel.Font = Enum.Font.SourceSansSemibold
@@ -484,8 +597,8 @@ function UILibrary.Load(GUITitle)
 			TextLabel.TextStrokeColor3 = Color3.fromRGB(41, 50, 53)
 			TextLabel.TextStrokeTransparency = 0.1
 			TextLabel.ZIndex = 3
-			
-		
+
+
 			local Line = Instance.new("ImageLabel")
 			Line.Name = "Line"
 			Line.Parent = TextLabel
@@ -497,31 +610,31 @@ function UILibrary.Load(GUITitle)
 			Line.ImageColor3 = Color3.fromRGB(183, 197, 211)
 			Line.ScaleType = Enum.ScaleType.Tile
 			Line.AnchorPoint = Vector2.new(0.5,0.5)
-			
+
 			local Value = 0
-			
+
 			local ButtonLibrary = {}
-			
+
 			function ButtonLibrary.AddEnable(Name, Callback)
-				
+
 				local Color = false
-				
+
 				local Button = Instance.new("ImageButton")
 				Button.Name = "Button"
 				Button.Parent = List
 				Button.BackgroundTransparency = 1
 				Button.Size = UDim2.new(0, 201,0, 17)
 				Button.ZIndex = 2
-			
+
 
 
 				Value = Tab.Size.Y.Offset + Button.Size.Y.Offset + 4
-				
-				
+
+
 				Tab.Size = UDim2.new(0, 202,0,Value)
-				
+
 				print(Value)
-				
+
 				local Enable = Instance.new("ImageLabel")
 				Enable.Name = "Enable"
 				Enable.Parent = Button
@@ -533,7 +646,7 @@ function UILibrary.Load(GUITitle)
 				Enable.ImageColor3 = Color3.fromRGB(255, 255, 255)
 				Enable.ScaleType = Enum.ScaleType.Stretch
 				Enable.AnchorPoint = Vector2.new(0, 0)
-				
+
 				local Back = Instance.new("Frame")
 				Back.Name = "Back"
 				Back.Parent = Enable
@@ -542,12 +655,12 @@ function UILibrary.Load(GUITitle)
 				Back.Position = UDim2.new(0.5, 0,0.5, 0)
 				Back.Size = UDim2.new(0, 14,0, 14)
 				Back.ZIndex = 3
-				
+
 				local Corner = Instance.new("UICorner")
 				Corner.Name = "UICorner"
 				Corner.Parent = Back
 				Corner.CornerRadius = UDim.new(0,8)
-				
+
 				local TextLabel = Instance.new("TextLabel")
 				TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				TextLabel.Parent = Button
@@ -563,7 +676,7 @@ function UILibrary.Load(GUITitle)
 				TextLabel.TextStrokeTransparency = 0.1
 				TextLabel.TextXAlignment = "Left"
 				TextLabel.ZIndex = 4
-				
+
 				Button.MouseButton1Down:Connect(function(i)
 					if Color == true then
 						Color = not Color
@@ -608,7 +721,7 @@ function UILibrary.Load(GUITitle)
 
 					print(Value)
 
-					
+
 					local TextLabel = Instance.new("TextLabel")
 					TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 					TextLabel.Parent = Button
@@ -624,7 +737,7 @@ function UILibrary.Load(GUITitle)
 					TextLabel.TextStrokeTransparency = 0.1
 					TextLabel.TextXAlignment = "Left"
 					TextLabel.ZIndex = 4
-					
+
 					local InputButName = Instance.new("TextLabel")
 					InputButName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 					InputButName.Parent = Button
@@ -647,7 +760,7 @@ function UILibrary.Load(GUITitle)
 						if selecting == false then
 							InputButName.Text = ". . ."
 							InputButName.TextColor3 = Back.BackgroundColor3
-							
+
 							UserInputService.InputBegan:Connect(function(input, gameProcessed)
 								if selecting == false then
 									local key = string.split(tostring(input.KeyCode), ".")
@@ -687,10 +800,10 @@ function UILibrary.Load(GUITitle)
 
 				end
 				return KeybindLibrary
-			
+
 			end
 			return ButtonLibrary
-			
+
 		end
 		return ActionLibrary
 	end
