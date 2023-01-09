@@ -809,6 +809,6 @@ function UILibrary.Load(GUITitle)
 		end
 		return ActionLibrary
 	end
-	return GroupLibrary, ConsoleDrag
+	return GroupLibrary
 end
 return UILibrary
