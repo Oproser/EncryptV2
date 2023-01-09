@@ -229,7 +229,7 @@ function UILibrary.Load(GUITitle)
 
 	local Overlay = Instance.new("ImageLabel")
 	Overlay.Name = "Overlay"
-	Overlay.Parent = UILibrary.ConsoleDrag
+	Overlay.Parent = ConsoleDrag
 	Overlay.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Overlay.BackgroundTransparency = 1.000
 	Overlay.Position = UDim2.new(-0.0100001423, 0, 0, 0)
@@ -242,7 +242,7 @@ function UILibrary.Load(GUITitle)
 
 	local Background = Instance.new("Frame")
 	Background.Name = "Background"
-	Background.Parent = UILibrary.ConsoleDrag
+	Background.Parent = ConsoleDrag
 	Background.BackgroundColor3 = Color3.fromRGB(229, 224, 202)
 	Background.BorderSizePixel = 0
 	Background.Position = UDim2.new(0, 0, 1.01871002, 0)
@@ -251,7 +251,7 @@ function UILibrary.Load(GUITitle)
 
 	local Line = Instance.new("ImageLabel")
 	Line.Name = "Line"
-	Line.Parent = UILibrary.ConsoleDrag
+	Line.Parent = ConsoleDrag
 	Line.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Line.BackgroundTransparency = 1.000
 	Line.Position = UDim2.new(0, 0, 0.899999976, 0)
@@ -262,7 +262,7 @@ function UILibrary.Load(GUITitle)
 	Line.ScaleType = Enum.ScaleType.Tile
 
 	local TextLabel = Instance.new("TextLabel")
-	TextLabel.Parent = UILibrary.ConsoleDrag
+	TextLabel.Parent = ConsoleDrag
 	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	TextLabel.BackgroundTransparency = 1.000
 	TextLabel.BorderSizePixel = 0
@@ -277,7 +277,7 @@ function UILibrary.Load(GUITitle)
 	TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 	local ScrollingFrame = Instance.new("ScrollingFrame")
-	ScrollingFrame.Parent = UILibrary.ConsoleDrag
+	ScrollingFrame.Parent = ConsoleDrag
 	ScrollingFrame.Active = true
 	ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	ScrollingFrame.BackgroundTransparency = 1.000
