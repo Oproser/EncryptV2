@@ -220,7 +220,7 @@ function UILibrary.Load(GUITitle)
 	ConsoleDrag.Name = "ConsoleDrag"
 	ConsoleDrag.Parent = Encrypt
 	ConsoleDrag.Active = true
-	ConsoleDrag.ConsoleDrag.BackgroundColor3 = Color3.fromRGB(68, 73, 77)
+	ConsoleDrag.BackgroundColor3 = Color3.fromRGB(68, 73, 77)
 	ConsoleDrag.BorderSizePixel = 0
 	ConsoleDrag.Draggable = true
 	ConsoleDrag.Position = UDim2.new(-3.66452861, 170, -7.41472769, 162)
