@@ -52,6 +52,8 @@ spawn(
 local UILibrary = {}
 
 function UILibrary.Load(GUITitle)
+	
+	
 
 	local Encrypt = Instance.new("ScreenGui")
 	Encrypt.Name = "MainGui"
@@ -212,18 +214,18 @@ function UILibrary.Load(GUITitle)
 	
 	
 	
-	UILibrary.ConsoleDrag = Instance.new("Frame")
+	local ConsoleDrag = Instance.new("Frame")
 	
-	UILibrary.ConsoleDrag.Visible = false
-	UILibrary.ConsoleDrag.Name = "ConsoleDrag"
-	UILibrary.ConsoleDrag.Parent = Encrypt
-	UILibrary.ConsoleDrag.Active = true
-	UILibrary.ConsoleDrag.ConsoleDragleDrag.BackgroundColor3 = Color3.fromRGB(68, 73, 77)
-	UILibrary.ConsoleDrag.BorderSizePixel = 0
-	UILibrary.ConsoleDrag.Draggable = true
-	UILibrary.ConsoleDrag.Position = UDim2.new(-3.66452861, 170, -7.41472769, 162)
-	UILibrary.ConsoleDrag.Selectable = true
-	UILibrary.ConsoleDrag.Size = UDim2.new(0, 241, 0, 22)
+	ConsoleDrag.Visible = false
+	ConsoleDrag.Name = "ConsoleDrag"
+	ConsoleDrag.Parent = Encrypt
+	ConsoleDrag.Active = true
+	ConsoleDrag.ConsoleDragleDrag.BackgroundColor3 = Color3.fromRGB(68, 73, 77)
+	ConsoleDrag.BorderSizePixel = 0
+	ConsoleDrag.Draggable = true
+	ConsoleDrag.Position = UDim2.new(-3.66452861, 170, -7.41472769, 162)
+	ConsoleDrag.Selectable = true
+	ConsoleDrag.Size = UDim2.new(0, 241, 0, 22)
 
 	local Overlay = Instance.new("ImageLabel")
 	Overlay.Name = "Overlay"
@@ -807,6 +809,6 @@ function UILibrary.Load(GUITitle)
 		end
 		return ActionLibrary
 	end
-	return GroupLibrary
+	return GroupLibrary, ConsoleDrag
 end
 return UILibrary
