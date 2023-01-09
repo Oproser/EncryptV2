@@ -281,10 +281,11 @@ function UILibrary.Load(GUITitle)
 	ScrollingFrame.Active = true
 	ScrollingFrame.AutomaticCanvasSize = "Y"
 	ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	ScrollingFrame.BackgroundTransparency = 1.000
+	ScrollingFrame.BackgroundTransparency = 1
 	ScrollingFrame.Position = UDim2.new(0, 0, 1.02434742, 0)
 	ScrollingFrame.Size = UDim2.new(0, 240, 0, 160)
 	ScrollingFrame.ScrollBarThickness = 5
+	ScrollingFrame.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
 
 	local UIListLayout = Instance.new("UIListLayout")
 	UIListLayout.Parent = ScrollingFrame
@@ -310,6 +311,7 @@ function UILibrary.Load(GUITitle)
 	TextBox.TextStrokeTransparency = 0.250
 	TextBox.TextWrapped = true
 	TextBox.TextXAlignment = Enum.TextXAlignment.Left
+	TextBox.AutomaticSize = "Y"
 	
 	
 	
