@@ -218,7 +218,7 @@ function UILibrary.Load(GUITitle)
 	
 	ConsoleDrag.Visible = false
 	ConsoleDrag.Name = "ConsoleDrag"
-	ConsoleDrag.Parent = Encrypt
+	ConsoleDrag.Parent = Draggable
 	ConsoleDrag.Active = true
 	ConsoleDrag.BackgroundColor3 = Color3.fromRGB(68, 73, 77)
 	ConsoleDrag.BorderSizePixel = 0
