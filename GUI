@@ -279,6 +279,7 @@ function UILibrary.Load(GUITitle)
 	local ScrollingFrame = Instance.new("ScrollingFrame")
 	ScrollingFrame.Parent = ConsoleDrag
 	ScrollingFrame.Active = true
+	ScrollingFrame.AutomaticCanvasSize = "Y"
 	ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	ScrollingFrame.BackgroundTransparency = 1.000
 	ScrollingFrame.Position = UDim2.new(0, 0, 1.02434742, 0)
